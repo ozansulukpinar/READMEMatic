@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="main">
+        <label>Project Name</label>
+        <input type="text" id="name" name="name" value="name" />
+        <br />
+
+        <label>Description</label>
+        <input type="text" id="desc" name="desc" value="desc"/>
+        <br />
+
+        <input type="checkbox" class="option" onclick="showTextarea(this);" id="info" name="info" value="info" />
+        <label for="info">General info</label>
+        <br />
+
+        <textarea id="infoText" name="infoText" rows="50" columns="50" class="text" style="display:none;"></textarea>
+        <br />
+
+        <input type="checkbox" class="option" onclick="showTextarea(this);" id="tech" name="tech" value="tech" />
+        <label for="tech">Technologies</label>
+        <br />
+
+        <textarea id="techText" name="techText" rows="50" columns="50" class="text" style="display:none;"></textarea>
+        <br />
+
+        <input type="checkbox" class="option" onclick="showTextarea(this);" id="features" name="features" value="features" />
+        <label for="features">Features</label>
+        <br />
+
+        <textarea id="featuresText" name="featuresText" rows="50" columns="50" class="text" style="display:none;"></textarea>
+        <br />
+
+        <input type="checkbox" class="option" onclick="showTextarea(this);" id="code" name="code" value="code" />
+        <label for="code">Code Examples</label>
+        <br />
+        
+        <textarea id="codeText" name="codeText" rows="50" columns="50" class="text" style="display:none;"></textarea>
+        <br />
+
+        <input type="checkbox" class="option" onclick="showTextarea(this);" id="status" name="status" value="status" />
+        <label for="status">Status</label>
+        <br />
+
+        <textarea id="statusText" name="statusText" rows="50" columns="50" class="text" style="display:none;"></textarea>
+        <br />
+
+        <input type="checkbox" class="option" onclick="showTextarea(this);" id="setup" name="setup" value="setup" />
+        <label for="setup">Setup</label>
+        <br />
+
+        <textarea id="setupText" name="setupText" rows="50" columns="50" class="text" style="display:none;"></textarea>
+        <br />
+
+        <input type="checkbox" class="option" onclick="showTextarea(this);" id="usage" name="usage" value="usage" />
+        <label for="usage">Usage</label>
+        <br />
+
+        <textarea id="usageText" name="usageText" rows="50" columns="50" class="text" style="display:none;"></textarea>
+        <br />
+
+        <input type="checkbox" class="option" onclick="showTextarea(this);" id="inspiration" name="inspiration" value="inspiration" />
+        <label for="inspiration">Inspiration</label>
+        <br />
+
+        <textarea id="inspirationText" name="inspirationText" rows="50" columns="50" class="text" style="display:none;"></textarea>
+        <br />
+
+        <input type="checkbox" class="option" onclick="showTextarea(this);" id="contact" name="contact" value="contact" />
+        <label for="contact">Contact</label>
+        <br />
+
+        <textarea id="contactText" name="contactText" rows="50" columns="50" class="text" style="display:none;"></textarea>
+        <br />
+
+        <input type="button" id="createButton" name="Create" value="Create" />
+
+        <textarea id="template" name="template" rows="250" columns="50" class="text" style="display:none;"></textarea>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
