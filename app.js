@@ -80,7 +80,7 @@ function createTemplate() {
     projectInfo += $("#desc").val() + "&#13;&#10;&#13;&#10;";
 
     options.forEach((element) => {
-        if ($("#" + element).is(":checked")) {
+        if ($("#" + element).is(":checked") && $("#" + element + "Text").val().length) {
             table += "- [" + headers[i] + "](#" + tags[i] + ")" + "&#13;&#10;";
             content += "## " + headers[i] + "&#13;&#10;&#13;&#10;";
             content += $("#" + element + "Text").val() + "&#13;&#10;&#13;&#10;";
