@@ -1,52 +1,89 @@
 var isTemplateCreatable = false;
 
-$('#createButton').click(function () {
-    $('.option').each(function () {
-        if ($(this).is(':checked') && $('#' + this.value + 'Text').length) {
-            createTemplate();
+$("#createButton").click(function () {
+    if (!$("#name").val().length) {
+        alert("Please enter a project name.");
+        return;
+    }
+
+    if (!$("#desc").val().length) {
+        alert("Please enter a project description.");
+        return;
+    }
+
+    $(".option").each(function () {
+        if ($(this).is(":checked") && $("#" + this.value + "Text").val().length) {
             isTemplateCreatable = true;
             return;
         }
     });
-    
+
     if (!isTemplateCreatable) {
-        alert('Please select an option and fill it');    
+        alert("Please select at least one option and fill its text.");
+        return;
+    }
+    else {
+        createTemplate();
     }
 });
 
 function showTextarea(e) {
-    if ($('#' + e.value).is(':checked')) {
-        $('#' + e.value + 'Text').show();        
+    if ($("#" + e.value).is(":checked")) {
+        $("#" + e.value + "Text").show();
+    } else {
+        $("#" + e.value + "Text").hide();
     }
-    else {
-        //$('#' + e.value + 'Text').val('');
-        $('#' + e.value + 'Text').hide();
-    }    
 }
 
 function createTemplate() {
-    var template = '';
-    var projectInfo = '';
-    var table = 'Table of contents';
-    var content = '';
+    var template = "";
+    var projectInfo = "";
+    var table = "## Table of contents" + "&#13;&#10;&#13;&#10;";
+    var content = "&#13;&#10;";
     var i = 0;
 
-    var options = ['info', 'tech', 'features', 'code', 'status', 'setup', 'usage', 'inspiration', 'contact'];
-    var headers = ['General info', 'Technologies', 'Features', 'Code Examples', 'Status', 'Setup', 'Usage', 'Inspiration', 'Contact'];
+    var options = [
+        "info",
+        "tech",
+        "features",
+        "code",
+        "status",
+        "setup",
+        "usage",
+        "inspiration",
+        "contact",
+    ];
+    var headers = [
+        "General info",
+        "Technologies",
+        "Features",
+        "Code Examples",
+        "Status",
+        "Setup",
+        "Usage",
+        "Inspiration",
+        "Contact",
+    ];
+    var tags = [
+        "general-info",
+        "technologies",
+        "features",
+        "code-examples",
+        "status",
+        "setup",
+        "usage",
+        "inspiration",
+        "contact",
+    ];
 
-    if ($('#name').val().length) {
-        projectInfo += $('#name').val();
-    }
+    projectInfo += "# " + $("#name").val() + "&#13;&#10;&#13;&#10;";
+    projectInfo += $("#desc").val() + "&#13;&#10;&#13;&#10;";
 
-    if ($('#desc').val().length) {
-        projectInfo += $('#desc').val();
-    }
-
-    options.forEach(element => {
-        if ($('#' + element).val()) {
-            table += headers[i];
-            content += headers[i];
-            content += $('#' + element + 'Text').val();
+    options.forEach((element) => {
+        if ($("#" + element).is(":checked")) {
+            table += "- [" + headers[i] + "](#" + tags[i] + ")" + "&#13;&#10;";
+            content += "## " + headers[i] + "&#13;&#10;&#13;&#10;";
+            content += $("#" + element + "Text").val() + "&#13;&#10;&#13;&#10;";
         }
 
         i++;
@@ -54,11 +91,28 @@ function createTemplate() {
 
     template = projectInfo + table + content;
 
-    //$('#template').append(projectInfo);
-    //$('#template').append(table);
-    //$('#template').append(content);
+    $("#template").append(template);
+    $("#template").show();
+    $("#copyTemplate").show();
+}
 
-    $('#template').append(template);
+document.addEventListener('click', (e) => {
+    let elementId = e.target.id;
+    if (elementId === 'copyTemplate') {
+        copyClipboard();
+    }
+}
+);
 
-    $('#template').show();
+function copyClipboard() {
+    const copyTemplate = async () => {
+        try {
+            await navigator.clipboard.writeText($("#template").val());
+            alert("Template is copied to clipboard!");
+        } catch (error) {
+            alert("Failed to copy: ", error);
+        }
+    }
+
+    copyTemplate();
 }

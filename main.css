@@ -1,3 +1,13 @@
 .text{
+    width: 50%;
+}
+
+#main{
+    position: absolute;
+    left: 30%;
     width: 100%;
+}
+
+table{
+    width: 50%;
 }
